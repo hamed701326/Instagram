@@ -11,7 +11,7 @@ import javax.persistence.Entity;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User extends PersistenceEntity<Long> {
+public class User extends PersistenceEntity<Integer> {
     private String userName;
     private String password;
 
