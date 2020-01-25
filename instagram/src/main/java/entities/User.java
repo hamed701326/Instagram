@@ -1,19 +1,21 @@
 package entities;
 
 import configue.PersistenceEntity;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder(toBuilder = true)
+@Entity
+@Table(name = "user")
+@EqualsAndHashCode(exclude = {"post",})
 public class User extends PersistenceEntity<Integer> {
     private String userName;
     private String email;
@@ -23,13 +25,22 @@ public class User extends PersistenceEntity<Integer> {
     private String lastIP;
     private Date dateCreated;
     private Date dateUpdated;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="User_id")
-    private User follower;
-
-    @OneToMany(mappedBy = "User")
-    private Set<User> following=new HashSet<>();
-
+//    @ManyToOne(cascade =CascadeType.ALL)
+//    @JoinTable(name = "following_follower",
+//            joinColumns = {@JoinColumn(name = "following_id")},
+//            inverseJoinColumns = {@JoinColumn(name = "follower_id")})
+//    private User follower;
+//    @OneToMany(mappedBy = "follower")
+//    private Set<User> followings=new HashSet<>();
+    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @JoinTable(name = "following_follower",
+            joinColumns = {@JoinColumn(name = "following_id")},
+            inverseJoinColumns = {@JoinColumn(name = "follower_id")})
+    private Set<User> followers = new HashSet<>();
+    @ManyToMany(mappedBy = "followers", fetch = FetchType.EAGER)
+    private Set<User> followings = new HashSet<>();
+    @OneToMany(mappedBy = "user")
+    private Set<Post> posts=new HashSet<>();
     @Override
     public String toString() {
         return "User{" +
@@ -43,4 +54,5 @@ public class User extends PersistenceEntity<Integer> {
                 ", dateUpdated=" + dateUpdated +
                 '}';
     }
+
 }
