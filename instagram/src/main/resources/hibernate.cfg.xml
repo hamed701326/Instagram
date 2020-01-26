@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration>
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">14tir1375</property>
+        <property name="hibernate.connection.password">14Tir1375</property>
         <property name="hibernate.connection.url">
             jdbc:mysql://localhost/instagram?createDatabaseIfNotExist=true
         </property>
@@ -17,6 +18,9 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
 
         <!---Mapping-->
-
+        <mapping class="entities.User"></mapping>
+        <mapping class="entities.Post"></mapping>
+        <mapping class="entities.Comment"></mapping>
+        <mapping class="entities.Like"></mapping>
         </session-factory>
 </hibernate-configuration>
