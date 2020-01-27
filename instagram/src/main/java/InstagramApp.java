@@ -1,13 +1,9 @@
-import configue.HibernateUtil;
-import entities.User;
-import org.hibernate.Session;
-
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Scanner;
 
 public class InstagramApp {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
 
     }
 }

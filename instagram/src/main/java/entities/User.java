@@ -32,15 +32,21 @@ public class User extends PersistenceEntity<Integer> {
 //    private User follower;
 //    @OneToMany(mappedBy = "follower")
 //    private Set<User> followings=new HashSet<>();
+
+
     @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinTable(name = "following_follower",
             joinColumns = {@JoinColumn(name = "following_id")},
             inverseJoinColumns = {@JoinColumn(name = "follower_id")})
     private Set<User> followers = new HashSet<>();
+
     @ManyToMany(mappedBy = "followers", fetch = FetchType.EAGER)
     private Set<User> followings = new HashSet<>();
+
     @OneToMany(mappedBy = "user")
     private Set<Post> posts=new HashSet<>();
+
+
     @Override
     public String toString() {
         return "User{" +

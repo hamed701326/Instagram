@@ -1,4 +1,4 @@
-package configue;
+package configue.hibernate;
 
 import org.hibernate.Session;
 
@@ -18,17 +18,20 @@ public abstract class CrudRepository <Entity,Id extends Serializable> {
         getSession().getTransaction();
         return id;
     }
+
     public void update(Entity entity){
         getSession().beginTransaction();
         getSession().update(entity);
         getSession().getTransaction();
     }
+
     public Entity findById(Id id){
         getSession().beginTransaction();
         Entity entity = (Entity) getSession().load(getEntityClass().getName(), (Serializable) id);
         getSession().getTransaction();
         return entity;
     }
+
     public List<Entity> findAll(){
         getSession().beginTransaction();
         List<Entity> entities = (List<Entity>) getSession()
@@ -36,6 +39,13 @@ public abstract class CrudRepository <Entity,Id extends Serializable> {
         getSession().getTransaction();
         return entities;
     }
+
+    public void remove(Entity entity){
+        getSession().beginTransaction();
+        getSession().remove(entity);
+        getSession().getTransaction().commit();
+    }
+
     public<Attribute> Entity load(Attribute attribute){
         getSession().beginTransaction();
         Entity entity = (Entity) getSession()

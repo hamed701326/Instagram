@@ -2,8 +2,8 @@
 <!DOCTYPE hibernate-configuration>
 <hibernate-configuration>
     <session-factory>
-        <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">14Tir1375</property>
+        <property name="hibernate.connection.username">mohmmad</property>
+        <property name="hibernate.connection.password">moh2079saf</property>
         <property name="hibernate.connection.url">
             jdbc:mysql://localhost/instagram?createDatabaseIfNotExist=true
         </property>

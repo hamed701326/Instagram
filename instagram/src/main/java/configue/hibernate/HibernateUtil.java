@@ -1,4 +1,4 @@
-package configue;
+package configue.hibernate;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

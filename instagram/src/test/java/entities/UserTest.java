@@ -1,12 +1,8 @@
 package entities;
 
-import configue.HibernateUtil;
+import configue.hibernate.HibernateUtil;
 import org.hibernate.Session;
 import org.junit.jupiter.api.Test;
-
-import java.util.Date;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
 
