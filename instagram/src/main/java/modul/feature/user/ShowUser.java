@@ -8,15 +8,8 @@ import repositoreis.UserRepository;
 import java.util.Scanner;
 
 public class ShowUser implements Show<User> {
-    @Override
-    public <Attribute> User show(Attribute attribute) {
+    public <Attribute>User loadUser(Attribute attribute) {
         User user = UserRepository.getInstance().load(attribute);
-
-        System.out.println("first name:"+user.getFirstName());
-        System.out.println("last name:"+user.getLastName());
-        System.out.println("username:"+user.getUserName());
-        System.out.println("number followers"+user.getFollowers().size());
-        System.out.println("number following"+user.getFollowings().size());
 
         return user;
 
@@ -32,5 +25,16 @@ public class ShowUser implements Show<User> {
         String s = scanner.nextLine();
 
         return s;
+    }
+
+    @Override
+    public void show(User user) {
+
+        System.out.println("first name:"+user.getFirstName());
+        System.out.println("last name:"+user.getLastName());
+        System.out.println("username:"+user.getUserName());
+        System.out.println("number followers"+user.getFollowers().size());
+        System.out.println("number following"+user.getFollowings().size());
+
     }
 }

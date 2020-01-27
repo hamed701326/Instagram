@@ -13,7 +13,7 @@ public class EditFirstName implements EditDecorator<User> {
     }
 
     @Override
-    public User changeData(User user) {
+    public User changeData() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter new first name for edit:");

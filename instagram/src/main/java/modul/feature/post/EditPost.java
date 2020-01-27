@@ -8,14 +8,15 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class EditPost implements Edit<Post> {
+    Scanner scanner = new Scanner(System.in);
+
     @Override
     public void edit(Post post) {
         post.setDateUpdated(new Date());
         PostRepository.getInstance().update(post);
     }
 
-    Post getData(Post post){
-        Scanner scanner = new Scanner(System.in);
+    public Post getData(Post post){
 
         System.out.println("edit/post");
         System.out.println("Enter new caption for edit post:");
@@ -24,5 +25,12 @@ public class EditPost implements Edit<Post> {
         post.setCaption(s);
 
         return post;
+    }
+
+    public Post load(){
+        System.out.println("Enter caption for edit:");
+        String s = scanner.nextLine();
+
+        return PostRepository.getInstance().load(s);
     }
 }

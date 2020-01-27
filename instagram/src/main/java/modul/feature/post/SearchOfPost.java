@@ -9,6 +9,7 @@ import repositoreis.PostRepository;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class SearchOfPost{
@@ -30,4 +31,13 @@ public class SearchOfPost{
         return post1;
     }
 
+    public Post search(String caption,User user){
+        List<Post> posts = user.getPosts().stream().filter(post ->
+                post.getCaption().equalsIgnoreCase(caption)).collect(Collectors.toList());
+        return posts.get(0);
+    }
+
+    public Post search(String caption){
+        return PostRepository.getInstance().load(caption);
+    }
 }

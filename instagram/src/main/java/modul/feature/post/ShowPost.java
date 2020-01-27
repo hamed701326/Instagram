@@ -8,19 +8,9 @@ import repositoreis.PostRepository;
 import java.util.Scanner;
 
 public class ShowPost implements Show<Post> {
-    @Override
-    public <String> Post show(String attribute) {
+
+    public <String> Post loadPost(String attribute) {
         Post post = PostRepository.getInstance().load(attribute);
-
-        System.out.println("caption:"+post.getCaption());
-        System.out.println("url:"+post.getImagePath());
-        System.out.println("like number:"+
-                LikeRepository.getInstance().likesOnePost(post).size());
-        System.out.println("latitude:"+post.getLatitude());
-        System.out.println("longitude:"+post.getLongitude());
-        System.out.println("size:"+post.getImageSize());
-        System.out.println("create date:"+post.getDateCreated());
-
         return post;
     }
 
@@ -32,5 +22,18 @@ public class ShowPost implements Show<Post> {
         String s = scanner.nextLine();
 
         return s;
+    }
+
+    @Override
+    public void show(Post post) {
+
+        System.out.println("caption:"+post.getCaption());
+        System.out.println("url:"+post.getImagePath());
+        System.out.println("like number:"+
+                LikeRepository.getInstance().likesOnePost(post).size());
+        System.out.println("latitude:"+post.getLatitude());
+        System.out.println("longitude:"+post.getLongitude());
+        System.out.println("size:"+post.getImageSize());
+        System.out.println("create date:"+post.getDateCreated());
     }
 }
